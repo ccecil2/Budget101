@@ -1,0 +1,28 @@
+budget.db
+
+
+CREATE TABLE User(
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    userName VARCHAR(20) NOT NULL,
+    password VARCHAR(20),
+    picture BLOB
+);
+
+CREATE TABLE Category(
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(20) NOT NULL,
+    alarm INTEGER NOT NULL,
+    type INTEGER NOT NULL
+);
+
+CREATE TABLE Record(
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    amount DOUBLE NOT NULL,
+    comment VARCHAR(50),
+    date DATETIME NOT NULL,
+    FK_Category INTEGER
+    FOREIGN KEY(FK_Category) REFERENCES Category(ID)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
+);
+
