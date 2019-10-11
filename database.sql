@@ -20,7 +20,7 @@ CREATE TABLE Record(
     amount DOUBLE NOT NULL,
     comment VARCHAR(50),
     date DATETIME NOT NULL,
-    FK_Category INTEGER
+    FK_Category INTEGER,
     FOREIGN KEY(FK_Category) REFERENCES Category(ID)
         ON UPDATE CASCADE
         ON DELETE SET NULL
