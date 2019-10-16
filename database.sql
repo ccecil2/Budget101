@@ -1,10 +1,6 @@
-budget.db
-
-
 CREATE TABLE User(
-    ID INTEGER PRIMARY KEY AUTOINCREMENT,
-    userName VARCHAR(20) NOT NULL,
-    password VARCHAR(20),
+    userName VARCHAR(20) PRIMARY KEY,
+    password VARCHAR(20) NOT NULL,
     picture BLOB
 );
 
@@ -25,4 +21,3 @@ CREATE TABLE Record(
         ON UPDATE CASCADE
         ON DELETE SET NULL
 );
-
