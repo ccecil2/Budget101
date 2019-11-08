@@ -1,4 +1,4 @@
-package Database;
+package budget101.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,12 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import Data.Category;
-import Data.Enum.Money;
-import Data.Enum.Status;
-import Data.Record;
-import Data.Split;
-import Data.User;
+import budget101.Data.Category;
+import budget101.Data.Enum.Money;
+import budget101.Data.Enum.Status;
+import budget101.Data.Record;
+import budget101.Data.Split;
+import budget101.Data.User;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Calendar;
