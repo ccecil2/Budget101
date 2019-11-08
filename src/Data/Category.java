@@ -1,6 +1,6 @@
-package Data;
+package budget101.Data;
 
-import Enum.Money;
+import budget101.Enum.Money;
 
 
 /**

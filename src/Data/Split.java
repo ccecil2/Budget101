@@ -1,6 +1,6 @@
-package Data;
+package budget101.Data;
 
-import Enum.Status;
+import budget101.Enum.Status;
 
 public final class Split
 {
