@@ -1,4 +1,4 @@
-package Data.Enum;
+package budget101.Data.Enum;
 
 public enum Money
 {
