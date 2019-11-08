@@ -1,4 +1,4 @@
-package Database;
+package budget101.Database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
