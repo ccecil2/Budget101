@@ -15,6 +15,7 @@ import budget101.Data.Split;
 import budget101.Data.User;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -30,9 +31,23 @@ public final class DatabaseAccess {
      * Contains connection and functionality with budget.db.
      * Close connection with close() when finished.
      */
-    public DatabaseAccess(Context context) {
+    public DatabaseAccess(Context context)
+    {
+        this.makeDatabaseFolder(); // Make database folder
         this.dataHelper = new DatabaseHelper(context);
         this.db = this.dataHelper.getWritableDatabase();
+    }
+
+
+    /**
+     * Makes the directory to hold the database.
+     */
+    private void makeDatabaseFolder()
+    {
+        File f = new File("data\\data\\budget101\\databases"); // Database filepath
+
+        if(!f.exists())
+            f.mkdir(); // Make directory
     }
 
 

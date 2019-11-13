@@ -32,14 +32,18 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         access = new DatabaseAccess(this);
 
+        // Make a user
+        /*try { User u = access.newUser("Alex", User.hash("password123"), null); }
+        catch (NoSuchAlgorithmException e) { e.printStackTrace(); }*/
+
         // Make a few categories
         /*Category c1 = access.newCategory("Food", true, 160.0, Money.EXPENSE);
         Category c2 = access.newCategory("Gas", true, 60.0, Money.EXPENSE);
         Category c3 = access.newCategory("Rent", false, 645.0, Money.EXPENSE);
-        Category c4 = access.newCategory("Work", false, 1500.0, Money.INCOME);
+        Category c4 = access.newCategory("Work", false, 1500.0, Money.INCOME);*/
 
         //Make a few records
-        access.newRecord(9.65, "Panda Express", new Date(), c1);
+        /*access.newRecord(9.65, "Panda Express", new Date(), c1);
         access.newRecord(6.52, "McDonalds", new Date(), c1);
         access.newRecord(19.88, "", new Date(), c2);
         access.newRecord(645.0, "November Rent", new Date(), c3);
@@ -47,9 +51,9 @@ public class MainActivity extends AppCompatActivity
 
 
         // Pull all records
-        Record[] r = access.getRecordByDate(10, 2019); // Nov/2019
-        Category[] c = access.getAllCategories();
-        Split[] s = access.getPendingSplits();
+        //Record[] r = access.getRecordByDate(10, 2019); // Nov/2019
+        //Category[] c = access.getAllCategories();
+        //Split[] s = access.getPendingSplits();
 
 
         // Make Splits
