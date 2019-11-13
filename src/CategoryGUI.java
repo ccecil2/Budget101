@@ -1,16 +1,20 @@
 package budget101;
 
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import budget101.Data.Category;
 import budget101.Data.Enum.Money;
 import budget101.Database.DatabaseAccess;
+import java.util.ArrayList;
 
 
 /**
@@ -23,10 +27,13 @@ public class CategoryGUI extends MainActivity {
     private RadioGroup RGroup;
     private TextView txtLimit;
     private RadioGroup RGroup2;
+    private Spinner spin;
 
     // Locals to save
     private Money money;
     private boolean alarm;
+    Category[] categories;
+    Category currentCat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +43,13 @@ public class CategoryGUI extends MainActivity {
         this.RGroup = findViewById(R.id.radioGroup);
         this.txtLimit = findViewById(R.id.limitText);
         this.RGroup2 = findViewById(R.id.radiogroup2);
+        this.spin = findViewById(R.id.spinner);
 
         this.addListeners(); // Add action listeners
 
         this.money = Money.EXPENSE;
         this.access = this.getDatabase(); // Get database object
+        this.populateCategories(); // Fill spinner
     }
 
 
@@ -80,6 +89,105 @@ public class CategoryGUI extends MainActivity {
                 }
             }
         });
+
+        this.spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
+            {
+                int slot = parent.getSelectedItemPosition();
+
+                if(slot > 0)
+                    currentCat = categories[slot - 1];
+                else
+                    currentCat = null;
+
+                populateForm(currentCat);
+            }
+
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+                currentCat = null;
+                populateFormEmpty();
+            }
+        });
+    }
+
+
+    /**
+     * Populate the spinner with categories.
+     */
+    private void populateCategories()
+    {
+        this.categories = this.access.getAllCategories(); // Get categories
+        ArrayList<String> list = new ArrayList<String>(10);
+        list.add("New"); // Add black entry
+
+        for(int i = 0; i < this.categories.length; i++)
+        {
+            list.add(this.categories[i].getName()); // Add names to list
+        }
+
+        ArrayAdapter<String> ad = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
+        this.spin.setAdapter(ad);
+    }
+
+
+    /**
+     * Sets the form to match category passed.
+     * @param cat Values to fill form with
+     */
+    private void populateForm(Category cat)
+    {
+        if(cat == null)
+            this.populateFormEmpty();
+        else
+        {
+            ((TextView) findViewById(R.id.category_text)).setText(cat.getName());
+            ((TextView) findViewById(R.id.limitText)).setText(String.valueOf(cat.getLimit()));
+            RadioButton radIncome;
+            RadioButton radAlarm;
+
+            if(cat.getMoney() == Money.INCOME)
+            {
+                radIncome = findViewById(R.id.radioIncome);
+                radIncome.setChecked(true);
+            }
+            else
+            {
+                radIncome = findViewById(R.id.radioExpense);
+                radIncome.setChecked(true);
+            }
+
+            if(cat.isAlarm())
+            {
+                radAlarm = findViewById(R.id.radioOn);
+                radAlarm.setChecked(true);
+            }
+            else
+            {
+                radAlarm = findViewById(R.id.radioOff);
+                radAlarm.setChecked(true);
+            }
+
+            ((RadioButton)findViewById(R.id.radioIncome)).setEnabled(false);
+            ((RadioButton)findViewById(R.id.radioExpense)).setEnabled(false);
+            ((TextView)findViewById(R.id.category_text)).setEnabled(false);
+        }
+    }
+
+
+    /**
+     * Sets the form to default values.
+     */
+    private void populateFormEmpty()
+    {
+        ((RadioButton)findViewById(R.id.radioIncome)).setEnabled(true);
+        ((RadioButton)findViewById(R.id.radioExpense)).setEnabled(true);
+        ((TextView)findViewById(R.id.category_text)).setEnabled(true);
+        ((TextView) findViewById(R.id.category_text)).setText("");
+        ((TextView) findViewById(R.id.limitText)).setText("");
+        ((RadioButton) findViewById(R.id.radioExpense)).setChecked(true);
+        ((RadioButton) findViewById(R.id.radioOn)).setChecked(true);
     }
 
 
@@ -105,6 +213,7 @@ public class CategoryGUI extends MainActivity {
         String name = ((TextView) findViewById(R.id.category_text)).getText().toString();
         String limitText = ((TextView) findViewById(R.id.limitText)).getText().toString();
         double limit;
+        boolean suc;
 
         if(this.checkInputs(name, limitText)) // Verify input
         {
@@ -113,12 +222,17 @@ public class CategoryGUI extends MainActivity {
             else
                 limit = Double.parseDouble(limitText);
 
-            Category c = access.newCategory(name, alarm, limit, money); // Save to database
+            if(this.currentCat == null) // Will be null if "New" is selected
+                suc = this.newCategory(name, limit);
+            else
+                suc = this.updateCategory(limit);
 
-            if (c != null) {
+            if (suc)
+            {
                 Toast t = Toast.makeText(this, name + " saved", Toast.LENGTH_SHORT);
                 t.show();
-            } else // Something failed
+            }
+            else // Something failed
             {
                 Toast t = Toast.makeText(this, name + " not saved", Toast.LENGTH_SHORT);
                 t.show();
@@ -126,6 +240,43 @@ public class CategoryGUI extends MainActivity {
 
             this.finish(); // Close activity
         }
+    }
+
+
+    /**
+     * Creates a new category.
+     * @param name Name of category
+     * @param limit Limit of category
+     * @return Success of operation
+     */
+    private boolean newCategory(String name, double limit)
+    {
+        Category c = this.access.newCategory(name, alarm, limit, money); // Save to database
+
+        if(c == null)
+            return false;
+        else
+            return true;
+    }
+
+
+    /**
+     * Updates the category to the database.
+     * @param limit New limit to set
+     * @return Success of operation
+     */
+    private boolean updateCategory(double limit)
+    {
+        this.currentCat.setLimit(limit); // Update limit
+
+        if(((RadioButton)findViewById(R.id.radioOn)).isChecked()) // Update alarm
+            this.currentCat.setAlarm(true);
+        else
+            this.currentCat.setAlarm(false);
+
+        boolean suc = this.access.updateCategory(this.currentCat);
+
+        return suc;
     }
 
 
