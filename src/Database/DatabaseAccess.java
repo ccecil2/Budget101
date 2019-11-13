@@ -44,8 +44,7 @@ public final class DatabaseAccess {
      */
     private void makeDatabaseFolder()
     {
-        //File f = new File("data\\data\\budget101\\databases"); // Make directory
-        File f = new File("data\\data\\com.example.testapp\\databases");
+        File f = new File("data\\data\\budget101\\databases"); // Database filepath
 
         if(!f.exists())
             f.mkdir(); // Make directory
