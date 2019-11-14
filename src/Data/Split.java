@@ -1,7 +1,12 @@
-package budget101.Data;
+package com.budget101.Data;
 
-import budget101.Enum.Status;
+import com.budget101.Data.Enum.Status;
 
+
+/**
+ * Holds information to split money
+ * with another user.
+ */
 public final class Split
 {
     final int ID;

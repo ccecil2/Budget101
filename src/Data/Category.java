@@ -1,6 +1,6 @@
-package budget101.Data;
+package com.budget101.Data;
 
-import budget101.Enum.Money;
+import com.budget101.Data.Enum.Money;
 
 
 /**
@@ -77,6 +77,16 @@ public final class Category
             this.alarm = true;
         else
             this.alarm = false;
+    }
+
+
+    /**
+     * Sets the alarm on or off.
+     * @param alarm Status to save
+     */
+    public void setAlarm(boolean alarm)
+    {
+        this.alarm = alarm;
     }
 
 
