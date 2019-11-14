@@ -1,22 +1,18 @@
-package budget101;
+package com.budget101;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.telecom.Call;
 import android.view.View;
-import android.widget.Toast;
 
-import budget101.Data.Category;
-import budget101.Data.Enum.Money;
-import budget101.Data.Enum.Status;
-import budget101.Data.Record;
-import budget101.Data.Split;
-import budget101.Data.User;
-import budget101.Database.DatabaseAccess;
+import com.budget101.Data.Category;
+import com.budget101.Data.Enum.Money;
+import com.budget101.Data.Enum.Status;
+import com.budget101.Data.Record;
+import com.budget101.Data.Split;
+import com.budget101.Data.User;
+import com.budget101.Database.DatabaseAccess;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
@@ -72,9 +68,10 @@ public class MainActivity extends AppCompatActivity
         return this.access;
     }
 
-    public void sendMessage(View view)
+    public void openCategory(View view)
     {
         Intent intent = new Intent(this, CategoryGUI.class);
+        //Intent intent = new Intent(this, test.class);
         startActivity(intent);
     }
 }

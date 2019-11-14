@@ -1,7 +1,6 @@
-package budget101;
+package com.budget101;
 
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,9 +10,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import budget101.Data.Category;
-import budget101.Data.Enum.Money;
-import budget101.Database.DatabaseAccess;
+import com.budget101.Data.Category;
+import com.budget101.Data.Enum.Money;
+import com.budget101.Database.DatabaseAccess;
 import java.util.ArrayList;
 
 
