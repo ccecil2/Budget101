@@ -1,4 +1,4 @@
-package budget101.Database;
+package com.budget101.Database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
