@@ -1,4 +1,4 @@
-package budget101.Database;
+package com.budget101.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,12 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import budget101.Data.Category;
-import budget101.Data.Enum.Money;
-import budget101.Data.Enum.Status;
-import budget101.Data.Record;
-import budget101.Data.Split;
-import budget101.Data.User;
+import com.budget101.Data.Category;
+import com.budget101.Data.Enum.Money;
+import com.budget101.Data.Enum.Status;
+import com.budget101.Data.Record;
+import com.budget101.Data.Split;
+import com.budget101.Data.User;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -44,7 +44,7 @@ public final class DatabaseAccess {
      */
     private void makeDatabaseFolder()
     {
-        File f = new File("data\\data\\budget101\\databases"); // Database filepath
+        File f = new File("data\\data\\com.budget101\\databases");
 
         if(!f.exists())
             f.mkdir(); // Make directory
