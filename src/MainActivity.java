@@ -74,4 +74,9 @@ public class MainActivity extends AppCompatActivity
         //Intent intent = new Intent(this, test.class);
         startActivity(intent);
     }
+    
+    public void openLogs(View v) {
+        Intent intent = new Intent(this, LogsGUI.class);
+        startActivity(intent);
+    }
 }
