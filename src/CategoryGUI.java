@@ -119,7 +119,7 @@ public class CategoryGUI extends MainActivity {
     {
         this.categories = this.access.getAllCategories(); // Get categories
         ArrayList<String> list = new ArrayList<String>(10);
-        list.add("New"); // Add black entry
+        list.add("New"); // Add blank entry
 
         for(int i = 0; i < this.categories.length; i++)
         {
