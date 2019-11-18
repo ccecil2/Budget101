@@ -20,20 +20,22 @@ public class Register extends MainActivity implements View.OnClickListener {
     EditText et_username, et_password;
     Button submit;
     private DatabaseAccess access;
-
+    private User new_user;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            super.onCreate(savedInstanceState);
-        }
+       
+        super.onCreate(savedInstanceState);
+        
         setContentView(R.layout.activity_register);
 
         et_username = (EditText) findViewById(R.id.et_username);
         et_password = (EditText) findViewById(R.id.et_password);
         submit =  (Button) findViewById(R.id.submit);
         this.access = this.getDatabase();
-
+        new_user = new User(null,null,null);
+        
         submit.setOnClickListener(this);
     }
 
@@ -44,17 +46,16 @@ public class Register extends MainActivity implements View.OnClickListener {
 
                 String username = et_username.getText().toString();
                 String password = et_password.getText().toString();
-                User new_user;
-
-                try {
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+              
+                try {                  
                         new_user = access.newUser(username, User.hash(password), null);
                     }
                 }
                 catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }
-                startActivity(new Intent(this, MainActivity.class));
+        
+                this.finish();
                 break;
         }
     }
