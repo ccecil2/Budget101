@@ -22,10 +22,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener
+public class MainActivity extends AppCompatActivity
 {
-    private EditText name , password;
-    private Button submit, register;
     private DatabaseAccess access;
 
     @Override
@@ -34,15 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         access = new DatabaseAccess(this);
 
-
-        // Linking buttons
-        name = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
-        submit =  (Button) findViewById(R.id.submit);
-        register = (Button) findViewById(R.id.register);
-
-        submit.setOnClickListener(this);
-        register.setOnClickListener(this);
 
         // Make a user
         /*try { User u = access.newUser("Alex", User.hash("password123"), null); }
@@ -72,60 +61,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         /*Split s1 = access.newSplit("Gary", r[0]);
         Split s2 = access.newSplit("Ed", r[1]);
         Split s3 = access.newSplit("Work", r[3]);*/
-    }
-
-
-    @Override
-    public void onClick(View v)
-    {
-        switch (v.getId()) {
-            case R.id.submit:
-                String username = name.getText().toString(); // Username input
-                String pass = "";
-
-                try { pass = User.hash(password.getText().toString()); } // Hash password input
-                catch (NoSuchAlgorithmException e) { e.printStackTrace(); }
-                User user = this.access.getUser(username); // Query database for user
-
-                // Check for valid user object
-                if(user != null)
-                {
-                    if(pass.equals(user.getPassword()))
-                    {
-                        Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
-                        //startActivity(new Intent(this, Login.class));
-                    }
-                    else
-                    {
-                        Toast.makeText(getApplicationContext(), "Wrong name or password...", Toast.LENGTH_SHORT).show();
-                        name.setBackgroundColor(Color.RED);
-                        password.setBackgroundColor(Color.RED);
-                    }
-                }
-                else
-                {
-                    Toast.makeText(this, username + " not found", Toast.LENGTH_SHORT).show();
-                }
-
-                break;
-
-                // find user
-                /*if (name.getText().toString().equals(/*access.getUser(user.getName())"ed") &&
-                        password.getText().toString().equals(/*access.getUser(user.getPassword())"password1234")) {
-                    Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(this, Login.class));
-                } else {
-                    Toast.makeText(getApplicationContext(), "Wrong name or password...", Toast.LENGTH_SHORT).show();
-                    name.setBackgroundColor(Color.RED);
-                    password.setBackgroundColor(Color.RED);
-                }
-
-                break;*/
-
-            case R.id.register:
-                startActivity(new Intent(this, Register.class));
-                break;
-        }
     }
 
 
