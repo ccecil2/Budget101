@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        access = new DatabaseAccess(this);
 
         // Linking buttons
         name = (EditText) findViewById(R.id.username);
@@ -45,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.submit:
                 User user = new User(null,null, null);
                 // find user
-                if (name.getText().toString().equals(/*access.getUser(user.getName())*/"ed") &&
-                        password.getText().toString().equals(/*access.getUser(user.getPassword())*/"password1234")) {
+                if (name.getText().toString().equals(access.getUser(user.getName())) &&
+                        password.getText().toString().equals(access.getUser(user.getPassword()))) {
                     Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(this, Login.class));
                 }
