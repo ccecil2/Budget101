@@ -11,8 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.budget101.Data.User;
-import com.example.budget101.Database.DatabaseAccess;
+import com.budget101.Data.User;
+import com.budget101.Database.DatabaseAccess;
 
 import static android.hardware.camera2.params.RggbChannelVector.RED;
 
@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText name , password;
     Button submit, register;
     private DatabaseAccess access;
+    private User new_user, u;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         password = (EditText) findViewById(R.id.password);
         submit =  (Button) findViewById(R.id.submit);
         register = (Button) findViewById(R.id.register);
+        new_user = new User(null, null, null);
+        u = new User(null,null,null);
 
         submit.setOnClickListener(this);
         register.setOnClickListener(this);
@@ -44,19 +47,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.submit:
-                User user = new User(null,null, null);
-                // find user
-                if (name.getText().toString().equals(access.getUser(user.getName())) &&
-                        password.getText().toString().equals(access.getUser(user.getPassword()))) {
-                    Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
+                String username = name.getText().toString();
+                String pass = password.getText().toString();
+                new_user.setPassword(pass);
+                u = this.access.newUser(username, new_user.getPassword(), null);
+
+                if (u == null) {
+                    Toast.makeText(this, "Redirecting...", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(this, Login.class));
                 }
                 else {
-                    Toast.makeText(getApplicationContext(),"Wrong name or password...",Toast.LENGTH_SHORT).show();
-                    name.setBackgroundColor(Color.RED);
-                    password.setBackgroundColor(Color.RED);
+                    Toast.makeText(this,"Wrong name or password...",Toast.LENGTH_SHORT).show();
+                    name.setBackgroundColor(Color.CYAN);
+                    password.setBackgroundColor(Color.CYAN);
                 }
-
                 break;
 
             case R.id.register:
@@ -65,4 +69,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    public DatabaseAccess getDatabase () {
+        return this.access;
+    }
 }
+
+
