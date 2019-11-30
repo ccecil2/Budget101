@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static com.budget101.Data.Enum.Money.EXPENSE;
 
 
-/**
+/*
  * Displays the information needed from the user
  * to input expense.
  */
@@ -40,10 +40,10 @@ public class ExpenseGUI extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense_gui);
 
-        this.txtNote = findViewById(R.id.note_txt);
-        this.txtAmount = findViewById(R.id.amount_txt);
-        this.txtDate = findViewById(R.id.date_txt);
-        this.spin = findViewById(R.id.spinner);
+        this.txtNote = findViewById(R.id.note_text);
+        this.txtAmount = findViewById(R.id.amount_text);
+        this.txtDate = findViewById(R.id.date_text);
+        this.spin = findViewById(R.id.spinner2);
 
         this.addListeners(); // Add action listeners
 
@@ -53,7 +53,7 @@ public class ExpenseGUI extends MainActivity {
     }
 
 
-    /**
+    /*
      * Add listeners to components.
      */
     private void addListeners() {
@@ -61,7 +61,7 @@ public class ExpenseGUI extends MainActivity {
 
         this.spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
 
-    {
+        {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
             {
                 int slot = parent.getSelectedItemPosition();
@@ -83,7 +83,7 @@ public class ExpenseGUI extends MainActivity {
     }
 
 
-    /**
+    /*
      * Populate the spinner with categories.
      */
     private void populateCategories()
@@ -107,7 +107,7 @@ public class ExpenseGUI extends MainActivity {
 
 
 
-    /**
+    /*
      * Verifies monetary format.
      * @param str String to check
      * @return True if of correct format, else, false//no need
@@ -119,20 +119,20 @@ public class ExpenseGUI extends MainActivity {
     }*/
 
 
-    /**
+    /*
      * Take information from elements and create an expense.
      *
      * @param view
      */
-    public void saveExpense(View view,Category currentCat)
+    public void saveExpense(View view)
     {
         //String name = ((TextView) findViewById(R.id.category_text)).getText().toString();
         //String limitText = ((TextView) findViewById(R.id.limitText)).getText().toString();
         String name = currentCat.getName().toString();
         double limit = currentCat.getLimit();
-        String noteText = ((TextView) findViewById(R.id.note_txt)).getText().toString();
-        String amountText = ((TextView) findViewById(R.id.amount_txt)).getText().toString();
-        String dateText = ((TextView) findViewById(R.id.date_txt)).getText().toString();
+        String noteText = ((TextView) findViewById(R.id.note_text)).getText().toString();
+        String amountText = ((TextView) findViewById(R.id.amount_text)).getText().toString();
+        String dateText = ((TextView) findViewById(R.id.date_text)).getText().toString();
         double amount;
         boolean suc;
 
@@ -149,7 +149,7 @@ public class ExpenseGUI extends MainActivity {
 
 
 
-    /**
+    /*
      * Verifies input in components.
      * @param amount_txt
      * @param date_txt

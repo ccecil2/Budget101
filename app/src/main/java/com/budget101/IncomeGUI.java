@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static com.budget101.Data.Enum.Money.INCOME;
 
 
-/**
+/*
  * Displays the information needed from the user
  * to input income.
  */
@@ -38,7 +38,7 @@ public class IncomeGUI extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_expense_gui);
+        setContentView(R.layout.activity_income_gui);
 
         this.txtNote = findViewById(R.id.note_txt);
         this.txtAmount = findViewById(R.id.amount_txt);
@@ -53,7 +53,7 @@ public class IncomeGUI extends MainActivity {
     }
 
 
-    /**
+    /*
      * Add listeners to components. don't need this
      */
     private void addListeners() {
@@ -83,7 +83,7 @@ public class IncomeGUI extends MainActivity {
     }
 
 
-    /**
+    /*
      * Populate the spinner with categories.
      */
     private void populateCategories()
@@ -107,7 +107,7 @@ public class IncomeGUI extends MainActivity {
 
 
 
-    /**
+    /*
      * Verifies monetary format.
      * @param str String to check
      * @return True if of correct format, else, false//no need
@@ -119,12 +119,12 @@ public class IncomeGUI extends MainActivity {
     }*/
 
 
-    /**
+    /*
      * Take information from elements and create an expense.
      *
      * @param view
      */
-    public void saveExpense(View view,Category currentCat)
+    public void saveExpense(View view)
     {
         //String name = ((TextView) findViewById(R.id.category_text)).getText().toString();
         //String limitText = ((TextView) findViewById(R.id.limitText)).getText().toString();
@@ -149,7 +149,7 @@ public class IncomeGUI extends MainActivity {
 
 
 
-    /**
+    /*
      * Verifies input in components.
      * @param amount_txt
      * @param date_txt
