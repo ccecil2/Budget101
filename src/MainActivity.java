@@ -41,14 +41,15 @@ public class MainActivity extends AppCompatActivity
         /*Category c1 = access.newCategory("Food", true, 160.0, Money.EXPENSE);
         Category c2 = access.newCategory("Gas", true, 60.0, Money.EXPENSE);
         Category c3 = access.newCategory("Rent", false, 645.0, Money.EXPENSE);
-        Category c4 = access.newCategory("Work", false, 1500.0, Money.INCOME);
+        Category c4 = access.newCategory("Work", false, 1500.0, Money.INCOME);*/
 
+        Category[] c = access.getAllCategories();
         //Make a few records
-        access.newRecord(9.65, "Panda Express", new Date(), c1);
-        access.newRecord(6.52, "McDonalds", new Date(), c1);
-        access.newRecord(19.88, "", new Date(), c2);
-        access.newRecord(645.0, "November Rent", new Date(), c3);
-        access.newRecord(1500.0, "", new Date(), c4);*/
+        /*access.newRecord(9.65, "Panda Express", new Date(), c[0]);
+        access.newRecord(6.52, "McDonalds", new Date(), c[1]);
+        access.newRecord(19.88, "", new Date(), c[2]);
+        access.newRecord(645.0, "November Rent", new Date(), c[3]);
+        access.newRecord(1500.0, "", new Date(), c[3]);*/
 
 
         // Pull all records
@@ -82,6 +83,20 @@ public class MainActivity extends AppCompatActivity
     public void openLogs(View view)
     {
         Intent intent = new Intent(this, LogsGUI.class);
+        startActivity(intent);
+    }
+
+
+    public void openReport(View view)
+    {
+        Intent intent = new Intent(this, Report.class);
+        startActivity(intent);
+    }
+
+
+    public void openRecord(View view)
+    {
+        Intent intent = new Intent(this, RecordGUI.class);
         startActivity(intent);
     }
 }
