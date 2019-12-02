@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity
         Category c3 = access.newCategory("Rent", false, 645.0, Money.EXPENSE);
         Category c4 = access.newCategory("Work", false, 1500.0, Money.INCOME);*/
 
-        Category[] c = access.getAllCategories();
+        //Category[] c = access.getAllCategories();
         //Make a few records
         /*access.newRecord(9.65, "Panda Express", new Date(), c[0]);
         access.newRecord(6.52, "McDonalds", new Date(), c[1]);
@@ -87,9 +87,9 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    public void openReport(View view)
+    public void openSplit(View view)
     {
-        Intent intent = new Intent(this, Report.class);
+        Intent intent = new Intent(this, SplitGUI.class);
         startActivity(intent);
     }
 
