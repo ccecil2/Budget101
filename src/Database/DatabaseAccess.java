@@ -214,6 +214,34 @@ public final class DatabaseAccess {
     }
 
 
+
+    /**
+     * Returns an array of all income categories in the database.
+     * Array will be zero length if no categories are in
+     * the database.
+     *
+     * @return Array of category objects
+     */
+    public Category[] getAllIncomeCategories()
+    {
+        String[] col = {"ID", "name", "alarm", "max", "type"};
+        String sel = "type = ?";
+        String[] args = {String.valueOf(Money.toInt(Money.INCOME))};
+
+        Cursor cursor = this.db.query("Category", col, sel, args, null, null, null, null);
+
+        Category[] cat = new Category[cursor.getCount()]; // Get row count
+        for (int index = 0; cursor.moveToNext(); index++)
+        {
+            cat[index] = new Category(cursor.getInt(0), cursor.getString(1), cursor.getInt(2), cursor.getDouble(3), cursor.getInt(4));
+        }
+
+        cursor.close();
+
+        return cat;
+    }
+
+
     /**
      * Checks database for given username and returns
      * a filled User object if found. Null if not found.
@@ -381,6 +409,33 @@ public final class DatabaseAccess {
             split = new Split(r, user, Status.PENDING, record);
 
         return split;
+    }
+
+
+    /**
+     * Returns a split record with matching id.
+     * @param id ID of split
+     * @return Split object or null
+     */
+    public Split getSplit(int id)
+    {
+        String[] col = {"ID", "otherUser", "status", "FK_Record"};
+        String sel = "ID = ?";
+        String[] args = {Integer.toString(id)};
+
+        Cursor cursor = this.db.query("Split", col, sel, args, null, null, null);
+
+        Split s = null;
+        if(cursor.moveToFirst())
+        {
+            Record rec = this.getRecord(cursor.getInt(3));
+
+            s = new Split(cursor.getInt(0), cursor.getString(1), Status.toStatus(cursor.getInt(2)), rec);
+        }
+
+        cursor.close();
+
+        return s;
     }
 
 
