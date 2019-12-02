@@ -99,4 +99,17 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(this, RecordGUI.class);
         startActivity(intent);
     }
+
+    public void openReport(View view)
+    {
+        Intent intent = new Intent(this, ReportGUI.class);
+        startActivity(intent);
+    }
+
+    public void logout(View view)
+    {
+        this.access.close();
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+    }
 }

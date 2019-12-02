@@ -3,6 +3,8 @@ package com.budget101;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.budget101.Data.Category;
@@ -32,22 +34,29 @@ public class ReportGUI extends MainActivity {
 
         this.access = super.getDatabase();
         this.chart = findViewById(R.id.pie);
+        fillSpinners();
     }
 
 
     public void run(View view) {
-        Calendar m = Calendar.getInstance(TimeZone.getTimeZone("America/Dallas"));
-        int month = m.get(Calendar.MONTH);
-        int year = m.get(Calendar.YEAR);
+        int month = ((Spinner)findViewById(R.id.spinMonth)).getSelectedItemPosition(); // Get month
+
+        Spinner spin = findViewById(R.id.spinYear);
+        String y = (String)spin.getSelectedItem(); // Get selected item
+        int year = Integer.valueOf(y); // Convert to int
+
+
         Record[] rec = this.access.getRecordByDate(month, year);
         Category[] cat = this.access.getAllCategories();
         totals = findTotals(rec);
         double[] sums = fillSums(rec, cat);
-        fillChart(sums, cat);
+
+
+        fillChart(sums, cat); // Fill pie chart
         TextView textView1 = (TextView) findViewById(R.id.textIncomesVar);
-        textView1.setText(Double.toString(totals[1]));
+        textView1.setText(String.format("%.2f", totals[1]));
         TextView textView2 = (TextView) findViewById(R.id.textExpenseVar);
-        textView2.setText(Double.toString(totals[0]));
+        textView2.setText(String.format("%.2f", totals[0]));
     }
 
 
@@ -57,7 +66,7 @@ public class ReportGUI extends MainActivity {
 
         for (int i = 0; i < sum.length; i++) {
             if (sum[i] > 0) {
-                data.add(new SliceValue((float) sum[i], colors[i % colors.length]).setLabel(cat[i].getName() + ": $" + sum[i]));
+                data.add(new SliceValue((float) sum[i], colors[i % colors.length]).setLabel(cat[i].getName() + ": $" + String.format("%.2f", sum[i])));
             }
         }
 
@@ -116,5 +125,43 @@ public class ReportGUI extends MainActivity {
         sum[1] = incomeTotal;
 
         return sum;
+    }
+
+
+    /**
+     * Initialize the spinners with string values.
+     */
+    private void fillSpinners()
+    {
+        ArrayList<String> monthList = new ArrayList<String>(12);
+        ArrayList<String> yearList = new ArrayList<String>(4);
+
+        // Create strings
+        monthList.add("JAN");
+        monthList.add("FEB");
+        monthList.add("MAR");
+        monthList.add("APR");
+        monthList.add("MAY");
+        monthList.add("JUN");
+        monthList.add("JUL");
+        monthList.add("AUG");
+        monthList.add("SEP");
+        monthList.add("OCT");
+        monthList.add("NOV");
+        monthList.add("DEC");
+
+        yearList.add("2019");
+        yearList.add("2020");
+        yearList.add("2021");
+
+        // Create adapters
+        ArrayAdapter<String> monAd = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, monthList);
+        ArrayAdapter<String> yearAd = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, yearList);
+
+        // Set adapters
+        Spinner spinMonth = ((Spinner) findViewById(R.id.spinMonth));
+        Spinner spinYear = ((Spinner) findViewById(R.id.spinYear));
+        spinMonth.setAdapter(monAd);
+        spinYear.setAdapter(yearAd);
     }
 }
