@@ -50,8 +50,33 @@
         android:text="Home Screen"
         android:textColor="#000"
         android:textSize="22dp"
+        android:onClick="openReport"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btnReport"
+        android:layout_width="118dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginLeft="148dp"
+        android:layout_marginTop="36dp"
+        android:onClick="openReport"
+        android:text="Report"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogs" />
+
+    <Button
+        android:id="@+id/btnRecord"
+        android:layout_width="118dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginLeft="148dp"
+        android:layout_marginTop="36dp"
+        android:onClick="openRecord"
+        android:text="Record"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnReport" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
