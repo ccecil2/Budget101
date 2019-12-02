@@ -142,7 +142,7 @@ public final class DatabaseAccess {
     public User newUser(String name, String password, Bitmap image)
     {
         ContentValues insert = new ContentValues();
-        insert.put("userName", name);
+        insert.put("userName", name.toLowerCase());
         insert.put("password", password);
         if(image != null) // Allow no image
             insert.put("picture", this.toByteArray(image));
@@ -227,7 +227,7 @@ public final class DatabaseAccess {
 
         String[] col = {"userName", "password", "picture"};
         String select = "userName = ?";
-        String[] args = {username};
+        String[] args = {username.toLowerCase()};
         Cursor cursor = this.db.query("User", col, select, args, null, null, null);
 
         User user = null;
