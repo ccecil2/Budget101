@@ -2,6 +2,11 @@ package com.budget101;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,12 +17,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.budget101.Data.Category;
+import com.budget101.Data.Enum.Money;
 import com.budget101.Data.Record;
 import com.budget101.Database.DatabaseAccess;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class RecordGUI extends MainActivity
 {
@@ -199,7 +206,60 @@ public class RecordGUI extends MainActivity
                 t.show();
             }
 
+            this.checkAlarm(date); // Check alarm for current category
             this.finish(); // Close activity
         }
+    }
+
+
+    /**
+     * Check alarm for current category
+     * and send alarm if needed.
+     * @param date Month/Year to check
+     */
+    private void checkAlarm(Date date)
+    {
+        double sum = this.getSum(date);
+
+        if(this.currentCat.isSoundAlarm(sum)) // Check if alarm should sound
+        {
+            String body = this.currentCat.getName() + " is reaching or past its limit of $" + this.currentCat.getLimit();
+            Toast t = Toast.makeText(this, body, Toast.LENGTH_LONG);
+            t.show();
+
+            /*NotificationManager manager =  (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            Notification notify = new Notification.Builder(getApplicationContext()).setContentTitle("Category alarm").setContentText(body).build();
+
+            notify.flags |= Notification.FLAG_AUTO_CANCEL;
+            manager.notify(0, notify);*/
+        }
+    }
+
+
+    /**
+     * Returns the sum of amounts in
+     * given month/year. Returns sum
+     * of current category.
+     * @param date Date to sum
+     * @return Sum of record amounts.
+     */
+    private double getSum(Date date)
+    {
+        double sum = 0.0;
+
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        Record[] rec = this.access.getRecordByDate(c.get(Calendar.MONTH), c.get(Calendar.YEAR));
+
+        if(rec.length > 0)
+        {
+            for (int k = 0; k < rec.length; k++)
+            {
+                if (this.currentCat.getID() == rec[k].getCategory().getID())
+                    sum += rec[k].getAmount();
+            }
+        }
+
+        return sum;
     }
 }
