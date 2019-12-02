@@ -10,73 +10,122 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="156dp"
+        android:layout_marginLeft="148dp"
         android:layout_marginTop="32dp"
         android:text="Budget101"
         android:textColor="#000"
-        android:textSize="20dp"
+        android:textSize="23dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnCategory"
-        android:layout_width="115dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="148dp"
-        android:layout_marginLeft="148dp"
-        android:layout_marginTop="188dp"
-        android:onClick="openCategory"
-        android:text="Category"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/btnLogs"
         android:layout_width="115dp"
         android:layout_height="56dp"
-        android:layout_marginStart="148dp"
-        android:layout_marginLeft="148dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_custom"
         android:onClick="openLogs"
         android:text="Logs"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toEndOf="@+id/btnRecord"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="92dp"
+        android:text="View"
+        android:textColor="#000"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogout" />
+
+    <Button
+        android:id="@+id/btnCategory"
+        android:layout_width="118dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/button_custom"
+        android:onClick="openCategory"
+        android:text="Category"
+        android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCategory" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSplit" />
+
+    <Button
+        android:id="@+id/btnSplit"
+        android:layout_width="118dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/button_custom"
+        android:onClick="openSplit"
+        android:text="Split"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRecord" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:text="Home Screen"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="134dp"
+        android:text="New"
         android:textColor="#000"
-        android:textSize="22dp"
-        android:onClick="openReport"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <Button
-        android:id="@+id/btnReport"
-        android:layout_width="118dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="148dp"
-        android:layout_marginLeft="148dp"
-        android:layout_marginTop="36dp"
-        android:onClick="openReport"
-        android:text="Report"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogs" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnRecord"
         android:layout_width="118dp"
         android:layout_height="56dp"
-        android:layout_marginStart="148dp"
-        android:layout_marginLeft="148dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_custom"
         android:onClick="openRecord"
         android:text="Record"
+        android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnReport" />
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <Button
+        android:id="@+id/btnReport"
+        android:layout_width="116dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/button_custom"
+        android:onClick="openReport"
+        android:text="Report"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toEndOf="@+id/btnSplit"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogs" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="86dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="2dp"
+        android:text="Logout"
+        android:onClick="logout"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/button_custom"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

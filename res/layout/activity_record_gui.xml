@@ -62,20 +62,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textNote" />
 
-    <Button
-        android:id="@+id/buttonsave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
-        android:layout_marginLeft="161dp"
-        android:layout_marginTop="43dp"
-        android:onClick="saveRecord"
-        android:text="Save"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_txt" />
+        <Button
+            android:id="@+id/buttonsave"
+            android:layout_width="115dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginLeft="148dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/button_custom"
+            android:onClick="saveRecord"
+            android:text="Save"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date_txt" />
 
-    <TextView
+        <TextView
         android:id="@+id/textDate"
         android:layout_width="44dp"
         android:layout_height="23dp"

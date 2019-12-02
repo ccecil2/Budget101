@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout2"
@@ -8,6 +8,9 @@
     tools:context=".ReportGUI">
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
     <Button
         android:id="@+id/Run"
         android:layout_width="115dp"
@@ -15,21 +18,15 @@
         android:layout_marginStart="148dp"
         android:layout_marginLeft="148dp"
         android:layout_marginTop="36dp"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:background="@drawable/button_custom"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
         android:onClick="run"
         android:text="RUN"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textIncomes"
-        android:layout_width="152dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="116dp"
-        android:text="Income   Totals $:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,20 +36,20 @@
         android:layout_height="29dp"
         android:layout_marginStart="168dp"
         android:layout_marginLeft="168dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="188dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@android:color/holo_green_dark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textExpenses"
-        android:layout_width="153dp"
-        android:layout_height="33dp"
+        android:id="@+id/textIncomes"
+        android:layout_width="152dp"
+        android:layout_height="32dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="176dp"
-        android:text="Expense Totals $:"
+        android:layout_marginTop="188dp"
+        android:text="Income   Totals $:"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#000"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,21 +61,55 @@
         android:layout_height="27dp"
         android:layout_marginStart="168dp"
         android:layout_marginLeft="168dp"
-        android:layout_marginTop="176dp"
+        android:layout_marginTop="248dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@android:color/holo_red_dark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <lecho.lib.hellocharts.view.PieChartView
-        android:id="@+id/pie"
-        android:layout_width="389dp"
-        android:layout_height="647dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="80dp"
+    <TextView
+        android:id="@+id/textExpenses"
+        android:layout_width="153dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="248dp"
+        android:text="Expense Totals $:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <lecho.lib.hellocharts.view.PieChartView
+        android:id="@+id/pie"
+        android:layout_width="403dp"
+        android:layout_height="414dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="288dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Spinner
+        android:id="@+id/spinYear"
+        android:layout_width="135dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginLeft="53dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toEndOf="@+id/spinMonth"
+        app:layout_constraintTop_toBottomOf="@+id/Run" />
+
+    <Spinner
+        android:id="@+id/spinMonth"
+        android:layout_width="141dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Run" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

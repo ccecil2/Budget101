@@ -142,13 +142,15 @@
 
         <Button
             android:id="@+id/btnAccept"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="116dp"
+            android:layout_height="54dp"
             android:layout_marginStart="160dp"
             android:layout_marginLeft="160dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="44dp"
+            android:background="@drawable/button_custom"
             android:onClick="saveCategory"
             android:text="Save"
+            android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/limitText" />
 
