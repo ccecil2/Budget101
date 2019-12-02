@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RecordGUI">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <TextView
+            android:id="@+id/incomeTitle"
+            android:layout_width="149dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="128dp"
+            android:layout_marginLeft="128dp"
+            android:layout_marginTop="44dp"
+            android:text="Record"
+            android:textColor="#000"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textCatName"
+            android:layout_width="133dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginLeft="148dp"
+            android:layout_marginTop="85dp"
+            android:text="Category Name:"
+            android:textColor="#000"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/incomeTitle" />
+
+        <TextView
+            android:id="@+id/textNote"
+            android:layout_width="183dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginLeft="148dp"
+            android:layout_marginTop="49dp"
+            android:text="Leave a reminder note:"
+            android:textColor="#000"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textCatName" />
+
+        <EditText
+            android:id="@+id/note_txt"
+            android:layout_width="334dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginLeft="148dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Note"
+            android:inputType="textMultiLine"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textNote" />
+
+        <Button
+            android:id="@+id/buttonsave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="84dp"
+            android:layout_marginLeft="84dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/button_custom"
+            android:onClick="saveRecord"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="Save"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date_txt" />
+
+        <TextView
+            android:id="@+id/textDate"
+            android:layout_width="44dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="116dp"
+            android:layout_marginLeft="116dp"
+            android:layout_marginTop="48dp"
+            android:text="Date"
+            android:textColor="#000"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textAmount" />
+
+        <EditText
+            android:id="@+id/date_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="29dp"
+            android:ems="10"
+            android:hint="MM/DD/YYYY"
+            android:inputType="date"
+            app:layout_constraintStart_toEndOf="@+id/textDate"
+            app:layout_constraintTop_toBottomOf="@+id/amount_txt" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="179dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="84dp"
+            app:layout_constraintStart_toEndOf="@+id/textCatName"
+            app:layout_constraintTop_toBottomOf="@+id/incomeTitle" />
+
+        <EditText
+            android:id="@+id/amount_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="44dp"
+            android:ems="10"
+            android:hint="Dollar amount"
+            android:inputType="number|numberDecimal"
+            app:layout_constraintStart_toEndOf="@+id/textAmount"
+            app:layout_constraintTop_toBottomOf="@+id/note_txt" />
+
+        <TextView
+            android:id="@+id/textAmount"
+            android:layout_width="93dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="67dp"
+            android:layout_marginLeft="67dp"
+            android:layout_marginTop="55dp"
+            android:text="Amount $:"
+            android:textColor="#000"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/note_txt" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
